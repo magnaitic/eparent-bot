@@ -4,7 +4,7 @@ Reverse-engineered client for the **eParent** (`dem.eschool.eparent`) API, recov
 
 ## How it works
 - Base URL: `https://eparent.eschool.mn/` (prod) or `https://eparent-test.eschool.mn/` (test)
-- Request/response bodies are **AES-256-CBC** encrypted (CryptoJS), key = `PBKDF2("ESCHOOL_EPARENT", salt, 999 iters, SHA-512)` with a fixed IV. See `src/crypto.mjs`.
+- Request/response bodies are **AES-256-CBC** encrypted (CryptoJS), key = `PBKDF2("ESCHOOL_EPARENT", salt, 999 iters, SHA-512)` with a fixed IV. See `src/crypto.ts`.
 - Wire format: `POST` with body `{"data":"<encrypted JSON>"}`; the reply's `data` field is decrypted automatically.
 - After login, authenticated calls send `Authorization: Bearer <token>`.
 

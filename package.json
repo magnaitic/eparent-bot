@@ -5,15 +5,23 @@
   "type": "module",
   "description": "Reverse-engineered client for the eParent (dem.eschool.eparent) API",
   "scripts": {
-    "login": "node login.mjs",
-    "call": "node call.mjs",
-    "selftest": "node selftest.mjs",
-    "refresh": "node refresh.mjs",
-    "me": "node me.mjs",
-    "pull": "node pull.mjs",
-    "inspect": "node inspect.mjs"
+    "login": "tsx login.ts",
+    "call": "tsx call.ts",
+    "selftest": "tsx selftest.ts",
+    "refresh": "tsx refresh.ts",
+    "me": "tsx me.ts",
+    "pull": "tsx pull.ts",
+    "inspect": "tsx inspect.ts",
+    "gen-ids": "tsx gen-ids.ts",
+    "typecheck": "tsc"
   },
   "dependencies": {
     "crypto-js": "^4.2.0"
+  },
+  "devDependencies": {
+    "@types/crypto-js": "^4.2.2",
+    "@types/node": "^22.10.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.7.0"
   }
 }

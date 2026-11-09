@@ -1,5 +1,5 @@
 // Offline sanity check: confirms the crypto round-trips and prints the derived key.
-import { encrypt, decrypt, KEY_HEX } from './src/crypto.mjs';
+import { encrypt, decrypt, KEY_HEX } from './src/crypto.ts';
 
 const sample = JSON.stringify({ hello: 'world', n: 42 });
 const ct = encrypt(sample);

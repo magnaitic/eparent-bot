@@ -1,6 +1,6 @@
 // Shows the parent profile and the list of children (ids + season), via main/init.
 // Usage: npm run me
-import { apiFromSession } from './src/api.mjs';
+import { apiFromSession } from './src/api.ts';
 
 const { api } = apiFromSession();
 const r = await api.init();
@@ -10,7 +10,7 @@ const data = r.data || {};
 const students = data.students || data?.data?.students || [];
 if (students.length) {
   console.log(`\nStudents (${students.length}):`);
-  for (const st of students) {
+  for (const st of students as unknown[]) {
     // print the whole object so we can see the real id/season field names
     console.log('— ' + JSON.stringify(st));
   }

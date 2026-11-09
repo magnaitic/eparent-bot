@@ -6,19 +6,19 @@
 // Put your credentials below. NOTE: this file is NOT git-ignored, so don't commit it
 // with real credentials (or move USERNAME/PASSWORD into .env, which is ignored).
 import { writeFileSync } from 'node:fs';
-import { apiPost } from './src/client.mjs';
+import { apiPost, type Env } from './src/client.ts';
 
 // ---- EDIT THESE ----
 const USERNAME = '**';
 const PASSWORD = '**';
-const env = 'prod'; // 'prod' or 'test'
+const env: Env = 'prod'; // 'prod' or 'test'
 // --------------------
 
 const username = USERNAME;
 const password = PASSWORD;
 
 // Stable device identity (ANDROID_ID is 16 hex chars). Keep these fixed across runs,
-// like a real device would. Regenerate with: node gen-ids.mjs
+// like a real device would. Regenerate with: npm run gen-ids
 const DEVICE = 'Pixel 8';
 const UNIQUE_ID = 'cac193478b17d8f9';
 

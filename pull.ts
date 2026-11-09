@@ -1,6 +1,7 @@
 // Pulls a student's data: home, attendance, homework, timetable, exams.
 // Usage: npm run pull -- <studentId> [seasonId]
-import { apiFromSession } from './src/api.mjs';
+import { apiFromSession } from './src/api.ts';
+import type { ApiResponse } from './src/client.ts';
 
 const student = process.argv[2];
 const season = process.argv[3] || null;
@@ -10,7 +11,7 @@ if (!student) {
 }
 
 const { api } = apiFromSession();
-const show = (label, r) => {
+const show = (label: string, r: ApiResponse) => {
   console.log(`\n===== ${label} (HTTP ${r.status}) =====`);
   console.log(JSON.stringify(r.data ?? r.raw, null, 2));
 };

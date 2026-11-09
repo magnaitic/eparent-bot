@@ -2,12 +2,13 @@
 // issued-at / expiry / computed lifetime. No network.
 // Usage: npm run inspect
 import { readFileSync } from 'node:fs';
+import type { Session } from './src/api.ts';
 
-let saved;
-try { saved = JSON.parse(readFileSync(new URL('./token.json', import.meta.url))); }
+let saved: Session;
+try { saved = JSON.parse(readFileSync(new URL('./token.json', import.meta.url), 'utf8')); }
 catch { console.error('No token.json — run `npm run login` first.'); process.exit(1); }
 
-function decodeJwt(name, tok) {
+function decodeJwt(name: string, tok: string | null | undefined) {
   console.log(`\n== ${name} ==`);
   if (!tok) { console.log('  (missing)'); return; }
   const parts = String(tok).split('.');
@@ -18,7 +19,7 @@ function decodeJwt(name, tok) {
   try {
     const payload = JSON.parse(Buffer.from(parts[1], 'base64url').toString('utf8'));
     console.log('  payload:', JSON.stringify(payload));
-    const fmt = (s) => new Date(s * 1000).toISOString();
+    const fmt = (s: number) => new Date(s * 1000).toISOString();
     if (payload.iat) console.log('  issued :', fmt(payload.iat));
     if (payload.exp) {
       console.log('  expires:', fmt(payload.exp));
@@ -30,7 +31,7 @@ function decodeJwt(name, tok) {
       console.log('  no exp claim — does not expire by time (server may still revoke it).');
     }
   } catch (e) {
-    console.log('  could not decode payload:', e.message);
+    console.log('  could not decode payload:', (e as Error).message);
   }
 }
 

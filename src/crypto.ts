@@ -14,21 +14,21 @@ const KEY = CryptoJS.PBKDF2(PASSWORD, SALT, {
   hasher: CryptoJS.algo.SHA512,
 });
 
-export const KEY_HEX = KEY.toString(CryptoJS.enc.Hex);
+export const KEY_HEX: string = KEY.toString(CryptoJS.enc.Hex);
 
 /** Encrypt a plaintext string -> base64 ciphertext (what goes in `data`). */
-export function encrypt(plaintext) {
+export function encrypt(plaintext: string): string {
   const enc = CryptoJS.AES.encrypt(plaintext, KEY, { iv: IV });
   return enc.ciphertext.toString(CryptoJS.enc.Base64);
 }
 
 /** Decrypt a base64 ciphertext string -> plaintext. */
-export function decrypt(b64) {
+export function decrypt(b64: string): string {
   const dec = CryptoJS.AES.decrypt(b64, KEY, { iv: IV });
   return dec.toString(CryptoJS.enc.Utf8);
 }
 
 /** Convenience: encrypt an object as JSON. */
-export const encryptJson = (obj) => encrypt(JSON.stringify(obj));
+export const encryptJson = (obj: unknown): string => encrypt(JSON.stringify(obj));
 /** Convenience: decrypt to an object. */
-export const decryptJson = (b64) => JSON.parse(decrypt(b64));
+export const decryptJson = <T = any>(b64: string): T => JSON.parse(decrypt(b64));

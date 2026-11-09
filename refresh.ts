@@ -3,11 +3,12 @@
 //
 // Usage: npm run refresh
 import { readFileSync, writeFileSync } from 'node:fs';
-import { apiPost } from './src/client.mjs';
+import { apiPost } from './src/client.ts';
+import type { Session } from './src/api.ts';
 
 const tokenUrl = new URL('./token.json', import.meta.url);
-let saved;
-try { saved = JSON.parse(readFileSync(tokenUrl)); }
+let saved: Session;
+try { saved = JSON.parse(readFileSync(tokenUrl, 'utf8')); }
 catch { console.error('No token.json — run `npm run login` first.'); process.exit(1); }
 
 const { token, refreshToken, env = 'prod' } = saved;

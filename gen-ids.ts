@@ -1,4 +1,4 @@
-// Prints a fresh device name + ANDROID_ID-style uniqueId. Paste into login.mjs.
+// Prints a fresh device name + ANDROID_ID-style uniqueId. Paste into login.ts.
 import { randomBytes } from 'node:crypto';
 
 const models = ['Pixel 7', 'Pixel 8', 'Pixel 9', 'SM-G991B', 'SM-A546E', 'SM-S918B', 'Redmi Note 12', 'Redmi Note 13'];
