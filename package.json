@@ -1,0 +1,19 @@
+{
+  "name": "eparent-pack",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Reverse-engineered client for the eParent (dem.eschool.eparent) API",
+  "scripts": {
+    "login": "node login.mjs",
+    "call": "node call.mjs",
+    "selftest": "node selftest.mjs",
+    "refresh": "node refresh.mjs",
+    "me": "node me.mjs",
+    "pull": "node pull.mjs",
+    "inspect": "node inspect.mjs"
+  },
+  "dependencies": {
+    "crypto-js": "^4.2.0"
+  }
+}
